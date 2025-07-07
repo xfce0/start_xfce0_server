@@ -1,0 +1,132 @@
+" Vim Configuration File
+" Created by Claude
+
+" ================== Basic Settings ===================
+set nocompatible                " Use Vim defaults (much better!)
+set encoding=utf-8              " Use UTF-8 encoding
+set fileencoding=utf-8          " Use UTF-8 encoding for files
+set backspace=indent,eol,start  " Allow backspacing over everything in insert mode
+set history=500                 " Keep 500 lines of command line history
+set ruler                       " Show the cursor position all the time
+set showcmd                     " Display incomplete commands
+set incsearch                   " Do incremental searching
+set hlsearch                    " Highlight search results
+set ignorecase                  " Ignore case when searching...
+set smartcase                   " ...unless we type a capital
+set showmatch                   " Show matching brackets
+set matchtime=2                 " How many tenths of a second to blink
+set autoread                    " Auto reload files changed outside vim
+set hidden                      " Allow buffer switching without saving
+set wildmenu                    " Command-line completion
+set wildmode=longest:full,full  " Command-line completion mode
+set ttyfast                     " Faster terminal connection
+set lazyredraw                  " Don't redraw while executing macros
+set scrolloff=5                 " Keep 5 lines above/below cursor visible
+set sidescrolloff=5             " Keep 5 columns left/right of cursor visible
+set display=lastline            " Show as much as possible of the last line
+set modelines=0                 " Disable modelines as a security precaution
+set noswapfile                  " Don't use swapfile
+set nobackup                    " Don't keep a backup file
+
+" ================== UI and Colors ===================
+set number                      " Show line numbers
+set relativenumber              " Show relative line numbers
+set cursorline                  " Highlight current line
+set showmode                    " Show current mode
+set title                       " Show the filename in the window titlebar
+set noerrorbells                " No beeps
+set visualbell                  " Flash the screen instead of beeping
+set t_vb=                       " Disable visual bell flash
+set laststatus=2                " Always show status line
+set mouse=a                     " Enable mouse in all modes
+set splitbelow                  " Open new split panes to bottom
+set splitright                  " Open new split panes to right
+
+" Use subtle, non-bright colors
+syntax enable                   " Enable syntax highlighting
+set background=dark             " Use dark background
+colorscheme desert              " Use desert colorscheme (widely available)
+
+" Custom status line
+set statusline=%F%m%r%h%w\ [%{&ff}]\ %y\ [%l,%v][%p%%]
+
+" ================== Indentation ===================
+set autoindent                  " Copy indent from current line when starting a new line
+set smartindent                 " Smart autoindenting when starting a new line
+set tabstop=4                   " A tab is four spaces
+set softtabstop=4               " Backspace deletes 4 spaces
+set shiftwidth=4                " Number of spaces to use for autoindenting
+set shiftround                  " Use multiple of shiftwidth when indenting with '<' and '>'
+set expandtab                   " Convert tabs to spaces
+set smarttab                    " Be smart when using tabs
+set wrap                        " Wrap lines
+set linebreak                   " Wrap at word boundaries
+
+" ================== File Navigation ===================
+" File browsing
+let g:netrw_banner = 0          " Disable annoying banner
+let g:netrw_browse_split = 4    " Open in prior window
+let g:netrw_altv = 1            " Open splits to the right
+let g:netrw_liststyle = 3       " Tree view
+
+" ================== Key Mappings ===================
+" Use space as leader key
+let mapleader = " "
+
+" Easier saving and quitting
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>x :x<CR>
+
+" Easier navigation between splits
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Clear search highlighting
+nnoremap <leader>c :nohl<CR>
+
+" Toggle line numbers
+nnoremap <leader>n :set number!<CR>
+
+" Toggle relative line numbers
+nnoremap <leader>r :set relativenumber!<CR>
+
+" Quick buffer navigation
+nnoremap <leader>b :buffers<CR>:buffer<Space>
+nnoremap <leader>n :bnext<CR>
+nnoremap <leader>p :bprevious<CR>
+
+" ================== Advanced Features ===================
+" Remember cursor position
+augroup remember_cursor_position
+    autocmd!
+    autocmd BufReadPost *
+      \ if line("'\"") > 1 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" |
+      \ endif
+augroup END
+
+" Highlight trailing whitespace
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+
+" Remove trailing whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e
+
+" ================== File Type Specific Settings ===================
+" Enable file type detection
+filetype plugin indent on
+
+" Python
+autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+
+" HTML, CSS, JavaScript
+autocmd FileType html,css,javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+
+" Shell scripts
+autocmd FileType sh,bash setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab

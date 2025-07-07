@@ -1,0 +1,82 @@
+# SSH Client Configuration File
+# Created by Claude
+# This file should be placed at ~/.ssh/config
+
+# ================== Global Options ===================
+
+# Keep connections alive to prevent timeouts
+Host *
+    # Send a keepalive packet every 60 seconds
+    ServerAliveInterval 60
+    # Allow up to 5 missed packets before disconnecting
+    ServerAliveCountMax 5
+    
+    # Compression (speeds up connections on slow networks)
+    Compression yes
+    
+    # Allow sharing of already established connections
+    ControlMaster auto
+    ControlPath ~/.ssh/control/%r@%h:%p
+    ControlPersist 10m
+    
+    # Prefer stronger encryption algorithms
+    Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+    
+    # Specify hash algorithms
+    MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512,hmac-sha2-256
+    
+    # Key exchange algorithms
+    KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
+    
+    # Forward locale settings
+    SendEnv LANG LC_*
+    
+    # X11 forwarding (disable if not needed)
+    ForwardX11 no
+    
+    # Reuse SSH connections
+    AddressFamily any
+    
+    # Use SSH keys, not passwords when possible
+    PreferredAuthentications publickey,keyboard-interactive,password
+    
+    # Hash known hosts (improve privacy)
+    HashKnownHosts yes
+    
+    # Default settings for connection attempts
+    ConnectTimeout 10
+    ConnectionAttempts 3
+    
+    # Log level
+    LogLevel INFO
+
+# ================== Example Host-Specific Settings ===================
+# You can customize settings for specific hosts
+
+# Example: Server with custom port and identity file
+# Host myserver
+#     HostName myserver.example.com
+#     User myusername
+#     Port 2222
+#     IdentityFile ~/.ssh/myserver_key
+#     ForwardAgent yes
+
+# Example: GitHub configuration
+# Host github.com
+#     HostName github.com
+#     User git
+#     IdentityFile ~/.ssh/github_key
+#     IdentitiesOnly yes
+#     PreferredAuthentications publickey
+
+# Example: Server that frequently disconnects
+# Host flaky-server
+#     HostName flaky-server.example.com
+#     ServerAliveInterval 15
+#     ServerAliveCountMax 3
+#     TCPKeepAlive yes
+
+# ================== Tips ===================
+# 1. Create SSH keys: ssh-keygen -t ed25519 -C "your_email@example.com"
+# 2. Copy key to server: ssh-copy-id user@hostname
+# 3. Create the control directory: mkdir -p ~/.ssh/control

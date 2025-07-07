@@ -1,0 +1,22 @@
+Welcome to the system!
+
+Today is $(date +"%A, %B %d, %Y")
+Current time: $(date +"%H:%M:%S")
+
+System Information:
+------------------
+Hostname: $(hostname)
+Kernel: $(uname -r)
+Uptime: $(uptime -p)
+Load Average: $(uptime | awk -F'[a-z]:' '{ print $2}')
+
+Disk Usage:
+-----------
+$(df -h / | awk 'NR==1; NR>1 {print}')
+
+Memory Usage:
+------------
+$(free -h | grep -v + | awk 'NR==1; NR>1 {print}')
+
+Enjoy your session!
+------------------
