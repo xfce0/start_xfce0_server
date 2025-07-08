@@ -18,8 +18,8 @@ A comprehensive terminal configuration pack for Linux and macOS that includes cu
 
 1. Clone this repository:
    ```
-   git clone https://github.com/yourusername/terminal-config.git
-   cd terminal-config
+   git clone https://github.com/xfce0/start_xfce0_server.git
+   cd start_xfce0_server
    ```
 
 2. Make the install script executable:
