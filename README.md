@@ -1,4 +1,4 @@
-# Terminal Configuration Pack
+# Enhanced Terminal Configuration Pack for Linux and macOS
 
 A comprehensive terminal configuration pack for Linux and macOS that includes customizations for Vim, Tmux, SSH, and shell prompts. The configuration provides a practical and visually pleasing terminal experience with a custom SSH welcome banner.
 
@@ -10,7 +10,7 @@ A comprehensive terminal configuration pack for Linux and macOS that includes cu
 - **Custom SSH welcome banner**: Displays a stylish @xfce0 banner when connecting via SSH
 - **Tmux session management**: Enhanced Tmux configuration for better productivity
 - **Vim optimizations**: Practical Vim settings for efficient editing
-- **SSH timeout prevention**: Configured to keep SSH sessions alive
+- **SSH timeout prevention**: Configured with optimized ClientAliveInterval (30s) and ClientAliveCountMax (3) to keep SSH sessions alive
 - **Termux enhancements**: Scrolling and usability improvements for Termux
 - **Subtle color scheme**: Non-bright, eye-friendly colors
 
@@ -41,7 +41,7 @@ A comprehensive terminal configuration pack for Linux and macOS that includes cu
 The included `.vimrc` provides:
 
 - **Syntax highlighting**: With a subtle color scheme
-- **Line numbering**: Both absolute and relative line numbers
+- **Enhanced line numbering**: Consistent width for line numbers with better visual styling
 - **Improved navigation**: Enhanced split management
 - **Smart indentation**: Proper indentation based on file type
 - **Search improvements**: Incremental search with highlighting
@@ -69,8 +69,9 @@ The `.tmux.conf` provides:
 - **Intuitive splits**: Use `|` for vertical and `-` for horizontal splits
 - **Session management**: Easy session creation and navigation
 - **Status bar**: Informative but subtle status bar
-- **Mouse mode**: Full mouse support enabled
-- **Vi-mode**: Vi-like copy mode
+- **Enhanced mouse mode**: Full mouse support with improved scrolling and selection
+- **Copy-paste integration**: Better handling of selection and copy-paste operations
+- **Vi-mode**: Vi-like copy mode with mouse compatibility
 
 #### Tmux Commands
 
@@ -104,6 +105,8 @@ The shell prompt:
 - **Shows full path**: Displays complete current directory path
 - **Git integration**: Shows git branch and status when in a repository
 - **Timestamps**: Includes time information
+- **XFCE0 styling for Linux**: Special XFCE0-branded prompt for Linux systems
+- **Load average monitoring**: Shows system load with color-coded indicators
 - **Command history**: Enhanced history with larger size and duplicates prevention
 - **Useful aliases**: Common shortcuts for frequently used commands
 - **Helper functions**: Utility functions like `extract` and `mkcd`

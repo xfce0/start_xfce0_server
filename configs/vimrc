@@ -31,6 +31,9 @@ set nobackup                    " Don't keep a backup file
 " ================== UI and Colors ===================
 set number                      " Show line numbers
 set relativenumber              " Show relative line numbers
+set numberwidth=5               " Set consistent width for line numbers
+highlight LineNr ctermfg=grey   " Subtle color for line numbers
+highlight CursorLineNr cterm=bold ctermfg=white " Make current line number more visible
 set cursorline                  " Highlight current line
 set showmode                    " Show current mode
 set title                       " Show the filename in the window titlebar

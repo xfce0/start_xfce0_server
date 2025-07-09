@@ -6,10 +6,10 @@
 
 # Keep connections alive to prevent timeouts
 Host *
-    # Send a keepalive packet every 60 seconds
-    ServerAliveInterval 60
-    # Allow up to 5 missed packets before disconnecting
-    ServerAliveCountMax 5
+    # Send a keepalive packet every 30 seconds
+    ServerAliveInterval 30
+    # Allow up to 3 missed packets before disconnecting
+    ServerAliveCountMax 3
     
     # Compression (speeds up connections on slow networks)
     Compression yes

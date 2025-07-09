@@ -133,7 +133,13 @@ echo -e "${BLUE}Detected shell: $SHELL_TYPE${NC}"
 backup_file "$SHELL_RC"
 
 # Add shell customizations to shell RC file
-cat "$CONFIG_DIR/shell_prompt.sh" >> "$SHELL_RC"
+if [ "$OS" = "Linux" ]; then
+    # Use XFCE0 style for Linux
+    cat "$CONFIG_DIR/shell_prompt_xfce.sh" >> "$SHELL_RC"
+else
+    # Use default style for macOS and Termux
+    cat "$CONFIG_DIR/shell_prompt.sh" >> "$SHELL_RC"
+fi
 echo -e "${GREEN}Updated shell configuration: $SHELL_RC${NC}"
 
 # Configure Termux if detected
